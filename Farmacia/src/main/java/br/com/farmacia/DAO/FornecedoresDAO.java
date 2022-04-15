@@ -124,16 +124,22 @@ public class FornecedoresDAO {
 	}
 
 	public static void main(String[] args) {
-		/*
-		 * Fornecedores f1 = new Fornecedores(); f1.setDescricao("inserção para teste");
-		 * //Fornecedores f2 = new Fornecedores(); //f2.setDescricao("DESCRIÇÃO 2");
-		 * 
-		 * FornecedoresDAO fdao = new FornecedoresDAO(); try { fdao.salvar(f1);
-		 * //fdao.salvar(f2); System.out.println("Salvo com sucesso!!!"); } catch
-		 * (SQLException e) { e.printStackTrace();
-		 * System.out.println("Erro ao salvar!!!"); }
-		 * 
-		 */
+		
+		Fornecedores f1 = new Fornecedores();
+		f1.setDescricao("inserção para teste 9");
+		Fornecedores f2 = new Fornecedores();
+		f2.setDescricao("DESCRIÇÃO 6");
+
+		FornecedoresDAO fdao = new FornecedoresDAO();
+		try {
+			fdao.salvar(f1);
+			fdao.salvar(f2);
+			System.out.println("Salvo com sucesso!!!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Erro ao salvar!!!");
+		}
+		 
 
 		/*
 		 * Fornecedores f1 = new Fornecedores(); f1.setId(2);
@@ -176,7 +182,7 @@ public class FornecedoresDAO {
 		 * e.printStackTrace();
 		 * System.out.println("Resultado não encontrado!!!"); }
 		 */
-
+		/*
 		Fornecedores f1 = new Fornecedores();
 		f1.setDescricao("tes");
 		
@@ -190,7 +196,7 @@ public class FornecedoresDAO {
 		catch(SQLException e) {
 			e.printStackTrace();
 			System.out.println("Falha ao buscar!!!");
-		}
+		}*/
 			
 		
 		
