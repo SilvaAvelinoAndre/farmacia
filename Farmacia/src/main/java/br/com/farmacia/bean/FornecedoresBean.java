@@ -10,6 +10,7 @@ import javax.faces.model.ListDataModel;
 
 import br.com.farmacia.DAO.FornecedoresDAO;
 import br.com.farmacia.domain.Fornecedores;
+import br.com.farmacia.util.JFSUtil;
 
 @ManagedBean(name = "MBFornecedores")
 @ViewScoped
@@ -43,6 +44,7 @@ public class FornecedoresBean {
 			ArrayList<Fornecedores> lista = fdao.listar();
 			itens = new ListDataModel<Fornecedores>(lista);
 		} catch (SQLException e) {
+			JFSUtil.mensagemErro(e.getMessage());
 			e.printStackTrace();
 		}
 
@@ -59,8 +61,25 @@ public class FornecedoresBean {
 			ArrayList<Fornecedores> lista = fdao.listar();
 			itens = new ListDataModel<Fornecedores>(lista);
 			
+			JFSUtil.mensagemSucesso("Salvo com sucesso!!!");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			JFSUtil.mensagemErro(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	public void prepararExcluir() {
+		fornecedores = itens.getRowData();
+	}
+	public void excluir() {
+		try {
+			FornecedoresDAO fdao = new FornecedoresDAO();
+			fdao.excluir(fornecedores);
+			ArrayList<Fornecedores> lista = fdao.listar();
+			itens = new ListDataModel<Fornecedores>(lista);
+			
+			JFSUtil.mensagemSucesso("Deletado com sucesso!!!");
+		} catch (SQLException e) {
+			JFSUtil.mensagemErro(e.getMessage());
 			e.printStackTrace();
 		}
 	}

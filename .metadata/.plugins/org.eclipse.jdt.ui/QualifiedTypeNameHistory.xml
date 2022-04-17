@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="javax.faces.bean.ViewScoped"/>
+    <fullyQualifiedTypeName name="br.com.farmacia.domain.Fornecedores"/>
+    <fullyQualifiedTypeName name="javax.faces.model.ListDataModel"/>
+    <fullyQualifiedTypeName name="javax.faces.application.FacesMessage.Severity"/>
+    <fullyQualifiedTypeName name="javax.faces.application.FacesMessage"/>
+    <fullyQualifiedTypeName name="javax.faces.context.FacesContext"/>
+    <fullyQualifiedTypeName name="br.com.farmacia.util.JFSUtil"/>
+</qualifiedTypeNameHistroy>
