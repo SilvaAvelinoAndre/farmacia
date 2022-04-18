@@ -46,14 +46,17 @@ public class ProdutoDAO {
 	public void editar(Produtos p) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("UPDATE produtos ");
-		sql.append("SET descricao, preco, quantidade, fornecedores_idfornecedores ");
+		sql.append("SET descricao= ?, quantidade = ?, preco = ?, fornecedores_idfornecedores = ? ");
 		sql.append("WHERE idprodutos= ? ");
 
 		Connection conexao = ConexaoFactory.conectar();
 
 		PreparedStatement comando = conexao.prepareStatement(sql.toString());
 		comando.setString(1, p.getDescricao());
-		comando.setLong(2, p.getId());
+		comando.setLong(2, p.getQuantidade());
+		comando.setDouble(3, p.getPreco());
+		comando.setLong(4, p.getFornecedores().getId());
+		comando.setLong(5, p.getId());
 		comando.executeUpdate();
 
 	}
@@ -97,7 +100,7 @@ public class ProdutoDAO {
 		while (resultado.next()) {
 			Fornecedores f = new Fornecedores();	
 			f.setId(resultado.getLong("f.idfornecedores"));
-			f.setDescricao(resultado.getNString("f.descricao"));
+			f.setDescricao(resultado.getString("f.descricao"));
 			
 			Produtos p = new Produtos();
 			p.setId(resultado.getLong("p.idprodutos"));
@@ -133,88 +136,5 @@ public class ProdutoDAO {
 		}
 		return lista;
 
-	}
-
-	public static void main(String[] args) {
-		
-		Produtos p1 = new Produtos();
-		p1.setDescricao("inserção para teste 9");
-		Produtos p2 = new Produtos();
-		p2.setDescricao("DESCRIÇÃO 6");
-
-		ProdutoDAO pdao = new ProdutoDAO();
-		try {
-			pdao.salvar(p1);
-			pdao.salvar(p2);
-			System.out.println("Salvo com sucesso!!!");
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("Erro ao salvar!!!");
-		}
-		 
-
-		/*
-		 * Produtos p1 = new Produtos(); p1.setId(2);
-		 * 
-		 * ProdutosDAO pdao = new ProdutosDAO(); try { pdao.excluir(p1);
-		 * 
-		 * System.out.println("Deletado com sucesso!!!"); } catch (SQLException e) {
-		 * e.printStackTrace(); System.out.println("Erro ao deletar!!!"); }
-		 */
-
-		/*
-		 * Produtos p1 = new Produtos(); p1.setId(1);
-		 * p1.setDescricao("teste de edição");
-		 * 
-		 * ProdutosDAO pdao = new ProdutosDAO(); try { pdao.editar(p1);
-		 * 
-		 * System.out.println("Atualizado com sucesso!!!"); } catch (SQLException e) {
-		 * e.printStackTrace(); System.out.println("Falha ao atualizar!!!"); }
-		 */
-
-		/*
-		 * Produtos p1 = new Produtos(); p1.setId(1); Produtos p2 = new
-		 * Produtos(); p2.setId(5);
-		 * 
-		 * ProdutosDAO pdao = new ProdutosDAO(); try { Produtos p3 =
-		 * pdao.buscarPorId(p1); Produtos p4 = pdao.buscarPorId(p2);
-		 * System.out.println("Resultado 1: " + p3); System.out.println("Resultado 2: "
-		 * + p4); } catch (SQLException e) { e.printStackTrace();
-		 * System.out.println("Resultado não encontrado!!!"); }
-		 */
-		/*
-		 * ProdutosDAO pdao = new ProdutosDAO(); 
-		 * try {
-		 *  ArrayList<Produtos>
-		 * lista = pdao.listar(); por(Produtos p : lista) {
-		 * System.out.println("Resultado: " + p); }
-		 * 
-		 * 
-		 * } catch (SQLException e) { 
-		 * e.printStackTrace();
-		 * System.out.println("Resultado não encontrado!!!"); }
-		 */
-		/*
-		Produtos p1 = new Produtos();
-		p1.setDescricao("tes");
-		
-		ProdutosDAO pdao = new ProdutosDAO();
-		try {
-			ArrayList<Produtos> lista = pdao.buscarPorDescricao(p1);
-			por(Produtos p : lista) {
-				System.out.println("Resultado " + p);
-			}	
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-			System.out.println("Falha ao buscar!!!");
-		}*/
-			
-		
-		
-		
-	
-		
-		
 	}
 }

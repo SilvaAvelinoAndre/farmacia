@@ -13,31 +13,23 @@ import br.com.farmacia.domain.Produtos;
 public class ProdutoDAOTeste {
 	
 	@Test
-	public void salvar() {	
+	@Ignore
+	public void salvar() throws SQLException {	
 	
 	Produtos p1 = new Produtos();
-	p1.setDescricao("Aspirina");
-	p1.setPreco(12.99);
-	p1.setQuantidade(5L);
+	p1.setDescricao("Xarope");
+	p1.setPreco(25.79);
+	p1.setQuantidade(25L);
 	
 	Fornecedores f = new Fornecedores();
-	f.setId(8);
+	f.setId(41);
 	p1.setFornecedores(f);
 	
-//	Produtos p2 = new Produtos();
-//	p2.setDescricao("Diclofenaco");
-
 	ProdutoDAO pdao = new ProdutoDAO();
-	
-	try {
-		pdao.salvar(p1);
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
+	pdao.salvar(p1);
 	
 	}
+	
 	@Test
 	@Ignore
 	public void listar() throws SQLException {
@@ -59,10 +51,29 @@ public class ProdutoDAOTeste {
 	@Ignore
 	public void excluir() throws SQLException {
 		Produtos p = new Produtos();
-		p.setId(3L);
+		p.setId(8L);
 		
 		ProdutoDAO pdao = new ProdutoDAO();
 		pdao.excluir(p);
+		
+		
+		
+	}
+	
+	@Test
+	public void editar() throws SQLException {
+		Produtos p = new Produtos();
+		p.setId(7L);
+		p.setDescricao("Ranitidina");
+		p.setQuantidade(10L);
+		p.setPreco(15.90);
+		
+		Fornecedores f = new Fornecedores();
+		f.setId(39);
+		p.setFornecedores(f);
+		
+		ProdutoDAO pdao = new ProdutoDAO();
+		pdao.editar(p);
 		
 		
 		

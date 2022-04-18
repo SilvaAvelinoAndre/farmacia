@@ -1,0 +1,42 @@
+package br.com.farmacia.bean;
+
+import java.util.ArrayList;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+
+import br.com.farmacia.domain.Produtos;
+
+@ManagedBean(name = "MBProdutos")
+@ViewScoped
+public class ProdutosBean {
+
+	
+	private Produtos produtos;
+	private ArrayList<Produtos> itens;
+	private ArrayList<Produtos> itensFiltrados;
+	
+	public Produtos getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(Produtos produtos) {
+		this.produtos = produtos;
+	}
+
+	public ArrayList<Produtos> getItens() {
+		return itens;
+	}
+
+	public void setItens(ArrayList<Produtos> itens) {
+		this.itens = itens;
+	}
+	
+	public ArrayList<Produtos> getItensFiltrados() {
+		return itensFiltrados;
+	}
+	
+	public void setItensFiltrados(ArrayList<Produtos> itensFiltrados) {
+		this.itensFiltrados = itensFiltrados;
+	}
+}
