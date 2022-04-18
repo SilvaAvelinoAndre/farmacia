@@ -85,8 +85,8 @@
 					<f:selectItem itemValue="" itemLabel="selecione um fornecedor"/>
 					<f:selectItems value="#{MBProdutos.comboFornecedores}"
 					var="item"
-					itemValue="#{item.id}"
-					itemLabel="#{item.descricao}">
+					itemValue="item.id"
+					itemLabel="item.descricao">
 					
 					</f:selectItems>
 					</p:selectOneMenu>
