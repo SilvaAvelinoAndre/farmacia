@@ -22,8 +22,8 @@ public class Fornecedores {
 	}
 
 
-	public void setId(long i) {
-		this.id = i;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 
