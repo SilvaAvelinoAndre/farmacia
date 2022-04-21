@@ -54,7 +54,8 @@
 						
 					</p:commandButton>
 					<p:commandButton icon="ui-icon-pencil" oncomplete="PF('dlgproEditar').show();"
-					update=":frmproEditar:pnproEditar">
+					update=":frmproEditar:pnproEditar"
+					 actionListener="#{MBProdutos.prepararEditar}" >
 					<f:setPropertyActionListener value="#{item}" target="#{MBProdutos.produtos}"></f:setPropertyActionListener>
 					</p:commandButton>
 				</p:column>
@@ -74,17 +75,21 @@
 			
 			<h:form id="frmproNovo">
 				<h:panelGrid id="pnproNovo" columns="2">
-					<p:outputLabel value="Descrição: " />
-					<h:inputText size="15" maxlength="50" value="#{MBProdutos.produtos.descricao}" />
+					<p:outputLabel value="Descrição: " for="txtDescNovo"/>
+					<h:inputText size="15" maxlength="50" value="#{MBProdutos.produtos.descricao}" id="txtDescNovo"
+					required="true" requiredMessage="Por favor preencha o campo de descrição!" />
 					
-					<p:outputLabel value="Preço: " />
-					<h:inputText size="15" maxlength="50" value="#{MBProdutos.produtos.preco}" />	
+					<p:outputLabel value="Preço: " for="txtPrecoNovo"/>
+					<h:inputText size="15" maxlength="50" value="#{MBProdutos.produtos.preco}" id="txtPrecoNovo"
+					 required="true" requiredMessage="Por favor preencha o campo preço!" />	
 					
-					<p:outputLabel value="Quantidade: " />
-					<h:inputText size="15" maxlength="50" value="#{MBProdutos.produtos.quantidade}" />
+					<p:outputLabel value="Quantidade: "  for="txtQtdNovo"/>
+					<h:inputText size="15" maxlength="50" value="#{MBProdutos.produtos.quantidade}" id="txtQtdNovo"
+					required="true" requiredMessage="Por favor preencha o campo quantidade " />
 					
 					<p:outputLabel value="Fornecedor" />
-					<p:selectOneMenu value="#{MBProdutos.produtos.fornecedores.id}">
+					<p:selectOneMenu value="#{MBProdutos.produtos.fornecedores.id}" 
+					required="true" requiredMessage="Por favor selecione o fornecedor! ">
 					<f:selectItem itemValue="" itemLabel="selecione um fornecedor"/>
 					<f:selectItems value="#{MBProdutos.comboFornecedores}"
 					var="item"
@@ -97,9 +102,10 @@
 				</h:panelGrid>
 				<h:panelGrid columns="2">
 					<p:commandButton value="Salvar" actionListener="#{MBProdutos.novo}"
-						oncomplete="PF('dlgproNovo').hide(); PF('tabelaProdutos').clearFilters();"
+						oncomplete="verificar(xhr, status, args, 'dlgproNovo', 'tbprodutos')"
 						update=":frmProdutos:tbprodutos :msgGlobal" />
 					<p:commandButton value="Cancelar"
+					process="@this"
 						onclick="PF('dlgproNovo').hide();" />
 				</h:panelGrid>
 			</h:form>
@@ -124,6 +130,7 @@
 						oncomplete="PF('dlgproExcluir').hide(); PF('tabelaProdutos').clearFilters();"
 						update=":frmProdutos:tbprodutos :msgGlobal" />
 					<p:commandButton value="Cancelar"
+					process="@this"
 						onclick="PF('dlgproExcluir').hide();" />
 				</h:panelGrid>
 
@@ -141,15 +148,36 @@
 					<h:outputText value="#{MBProdutos.produtos.id}" />
 
 					<h:outputText value="Descrição" />
-					<h:inputText value="#{MBProdutos.produtos.descricao}" />
+					<h:inputText value="#{MBProdutos.produtos.descricao}" 
+					required="true" requiredMessage="Por favor preencha o campo descrição! "/>
+					
+					<h:outputText value="Quantidade" />
+					<h:inputText value="#{MBProdutos.produtos.quantidade}" 
+					required="true" requiredMessage="Por favor preencha o campo quantidade! "/>
+					
+					<h:outputText value="Preço" />
+					<h:inputText value="#{MBProdutos.produtos.preco}" 
+					required="true" requiredMessage="Por favor preencha o campo preço! "/>
+					
+					<h:outputText value="Fornecedor" />
+					<p:selectOneMenu value="#{MBProdutos.produtos.fornecedores.id}" 
+					required="true" requiredMessage="Por favor selecione o fornecedor! ">
+					<f:selectItems value="#{MBProdutos.comboFornecedores}"
+					var="item"
+					itemValue="#{item.id}"
+					itemLabel="#{item.descricao}">
+					
+					</f:selectItems>
+					</p:selectOneMenu>
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
 					<p:commandButton value="Editar"
 						actionListener="#{MBProdutos.editar}"
-						oncomplete="PF('dlgproEditar').hide(); PF('tabelaProdutos').clearFilters();"
+						oncomplete="verificar(xhr, status, args, 'dlgproEditar', 'tbprodutos')"
 						update=":frmProdutos:tbprodutos :msgGlobal" />
 					<p:commandButton value="Cancelar"
+					process="@this"
 						onclick="PF('dlgproEditar').hide();" />
 				</h:panelGrid>
 

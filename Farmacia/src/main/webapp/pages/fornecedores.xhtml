@@ -58,16 +58,18 @@
 			appendTo="@(body)">
 			<h:form id="frmforNovo">
 				<h:panelGrid id="pnforNovo" columns="2">
-					<p:outputLabel value="Descrição: " />
-					<h:inputText size="30" maxlength="50"
-						value="#{MBFornecedores.fornecedores.descricao}" />
+					<p:outputLabel value="Descrição: "  for="txtDescNovo"/>
+					<h:inputText size="30" maxlength="50" id="txtDescNovo"
+						value="#{MBFornecedores.fornecedores.descricao}" required="true" 
+						requiredMessage="Por favor preencha o campo de descrição!" />
 				</h:panelGrid>
 				<h:panelGrid columns="2">
 					<p:commandButton value="Salvar"
 						actionListener="#{MBFornecedores.novo}"
-						oncomplete="PF('dlgforNovo').hide(); PF('tabelaFornecedores').clearFilters();"
+						oncomplete="verificar(xhr, status, args, 'dlgforNovo', 'tbfornecedores')"
 						update=":frmfornecedores:tbfornecedores :msgGlobal" />
 					<p:commandButton value="Cancelar"
+					process="@this"
 						onclick="PF('dlgforNovo').hide();" />
 				</h:panelGrid>
 			</h:form>
@@ -92,6 +94,7 @@
 						oncomplete="PF('dlgforExcluir').hide(); PF('tabelaFornecedores').clearFilters();"
 						update=":frmfornecedores:tbfornecedores :msgGlobal" />
 					<p:commandButton value="Cancelar"
+					process="@this"
 						onclick="PF('dlgforExcluir').hide();" />
 				</h:panelGrid>
 
@@ -108,16 +111,18 @@
 					<h:outputText value="Id Fornecedores" />
 					<h:outputText value="#{MBFornecedores.fornecedores.id}" />
 
-					<h:outputText value="Descrição" />
-					<h:inputText value="#{MBFornecedores.fornecedores.descricao}" />
+					<h:outputText value="Descrição" for="txtEditarFor" />
+					<h:inputText value="#{MBFornecedores.fornecedores.descricao}" id="txtEditarFor" required="true" 
+						requiredMessage="Por favor preencha o campo de edição!" />
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
 					<p:commandButton value="Editar"
 						actionListener="#{MBFornecedores.editar}"
-						oncomplete="PF('dlgforEditar').hide(); PF('tabelaFornecedores').clearFilters();"
+						oncomplete="verificar(xhr, status, args, 'dlgforEditar', 'tbfornecedores')"
 						update=":frmfornecedores:tbfornecedores :msgGlobal" />
 					<p:commandButton value="Cancelar"
+					process="@this"
 						onclick="PF('dlgforEditar').hide();" />
 				</h:panelGrid>
 

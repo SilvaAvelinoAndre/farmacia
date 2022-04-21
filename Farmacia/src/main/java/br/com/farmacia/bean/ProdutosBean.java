@@ -107,6 +107,19 @@ public class ProdutosBean {
 			e.printStackTrace();
 		}
 	}
+	public void prepararEditar() {
+
+		try {
+			produtos = new Produtos();
+			FornecedoresDAO fdao = new FornecedoresDAO();
+			comboFornecedores = fdao.listar();
+		} catch (SQLException e) {
+			JFSUtil.mensagemErro(e.getMessage());
+			e.printStackTrace();
+		}
+
+	}
+	
 	public void editar() {
 		try {
 			ProdutoDAO pdao = new ProdutoDAO();
