@@ -102,11 +102,10 @@
 				</h:panelGrid>
 				<h:panelGrid columns="2">
 					<p:commandButton value="Salvar" actionListener="#{MBProdutos.novo}"
-						oncomplete="verificar(xhr, status, args, 'dlgproNovo', 'tbprodutos')"
+						oncomplete="verificar(xhr, status, args, 'dlgproNovo', 'tabelaProdutos')"
 						update=":frmProdutos:tbprodutos :msgGlobal" />
-					<p:commandButton value="Cancelar"
-					process="@this"
-						onclick="PF('dlgproNovo').hide();" />
+					<p:commandButton value="Cancelar" process="@this"
+						onclick="PF('dlgproNovo').hide();"  />
 				</h:panelGrid>
 			</h:form>
 		</p:dialog>
@@ -174,10 +173,9 @@
 				<h:panelGrid columns="2">
 					<p:commandButton value="Editar"
 						actionListener="#{MBProdutos.editar}"
-						oncomplete="verificar(xhr, status, args, 'dlgproEditar', 'tbprodutos')"
+						oncomplete="verificar(xhr, status, args, 'dlgproEditar', 'tabelaProdutos')"
 						update=":frmProdutos:tbprodutos :msgGlobal" />
-					<p:commandButton value="Cancelar"
-					process="@this"
+					<p:commandButton value="Cancelar" process="@this"
 						onclick="PF('dlgproEditar').hide();" />
 				</h:panelGrid>
 
