@@ -25,7 +25,7 @@ public class Produtos {
 	@Column(name="pro_quantidade")
 	private Integer quantidade;
 	
-	@Column(name="pro_preco", length = 50, nullable = false, scale= 10, precision= 2 )
+	@Column(name="pro_preco", length = 50, nullable = false, scale= 2, precision= 10 )
 	private Double preco;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
